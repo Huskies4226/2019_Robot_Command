@@ -43,22 +43,29 @@ public class Drive_Seek_With_LimeLight extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+
+        double kp = .005; // poropotional gain for seeking target
+        double xSpeed = 0;
+        double zRotation = Robot.oi.my_getLimeLight_tx_Data() * kp;
+        Robot.driveTrain.my_Drive_Arcade(xSpeed, zRotation);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+        return false; // Commanded currently with whileheld button
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.driveTrain.my_Drive_Arcade(0,0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        end();
     }
 }

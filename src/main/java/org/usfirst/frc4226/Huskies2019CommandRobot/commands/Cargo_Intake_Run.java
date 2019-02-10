@@ -43,6 +43,9 @@ public class Cargo_Intake_Run extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        //Get the value we want the intake to run
+        double power = Robot.oi.getCargoIntake_Power();
+        Robot.cargoIntake.my_Intake_Run(power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -54,11 +57,15 @@ public class Cargo_Intake_Run extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        //Clean up and turn off motor
+        Robot.cargoIntake.my_Intake_Run(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        //If intrupted the call end
+        end();
     }
 }

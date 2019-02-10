@@ -109,5 +109,12 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    public void my_Drive_Tank(double leftSpeed, double rightSpeed) {
+        differentialDrive1.tankDrive(leftSpeed, rightSpeed, true);
+    }
+
+    public void my_Drive_Arcade(double xSpeed, double zRotation) {
+        differentialDrive1.arcadeDrive(xSpeed, zRotation);
+    }
 }
 
