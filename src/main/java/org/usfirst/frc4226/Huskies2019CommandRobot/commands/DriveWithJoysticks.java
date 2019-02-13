@@ -43,9 +43,9 @@ public class DriveWithJoysticks extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        double leftSpeed = Robot.oi.getDriveTrainLeftSpeed();
-        double rightSpeed = Robot.oi.getDriveTrainRightSpeed();
-        Robot.driveTrain.my_Drive_Tank(leftSpeed, rightSpeed);
+        double leftSpeed = -Robot.oi.leftStick.getRawAxis(1);
+        double rightSpeed = -Robot.oi.leftStick.getRawAxis(5);
+        Robot.driveTrain.my_DriveTank(leftSpeed, rightSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -57,15 +57,13 @@ public class DriveWithJoysticks extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-         //Clean up and turn off motor
-        Robot.driveTrain.my_Drive_Tank(0,0);
+        Robot.driveTrain.my_DriveTank(0,0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-        //If intrupted call end()
         end();
     }
 }
